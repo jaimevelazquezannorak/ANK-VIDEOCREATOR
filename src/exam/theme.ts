@@ -92,22 +92,55 @@ export const state = {
   g800: "#2C2C2C",
 } as const;
 
-/**
- * Escaleta del video de venta (98.4 s @ 30 fps = 2952 frames).
- * Los planos de app se intercalan; las diapositivas de producto no cambian.
- */
-export const SALES = [
-  { id: "brand", from: 0, duration: 252 },
-  { id: "appDash", from: 252, duration: 120 },
-  { id: "problem", from: 372, duration: 300 },
-  { id: "hardware", from: 672, duration: 360 },
-  { id: "appGen", from: 1032, duration: 120 },
-  { id: "design", from: 1152, duration: 420 },
-  { id: "identity", from: 1572, duration: 300 },
-  { id: "appStudents", from: 1872, duration: 120 },
-  { id: "printScan", from: 1992, duration: 360 },
-  { id: "vision", from: 2352, duration: 360 },
-  { id: "closing", from: 2712, duration: 240 },
-] as const;
+export type SceneId =
+  | "brand"
+  | "appDash"
+  | "problem"
+  | "hardware"
+  | "appGen"
+  | "design"
+  | "identity"
+  | "appStudents"
+  | "printScan"
+  | "vision"
+  | "closing";
 
-export const SALES_FRAMES = 2952;
+export const SCENE_ORDER: SceneId[] = [
+  "brand",
+  "appDash",
+  "problem",
+  "hardware",
+  "appGen",
+  "design",
+  "identity",
+  "appStudents",
+  "printScan",
+  "vision",
+  "closing",
+];
+
+/**
+ * Escaleta del video de venta, gobernada por la locucion.
+ * Cada escena arranca ~0,3 s antes de que empiece su bloque hablado.
+ * Los instantes salen de `silencedetect` sobre `public/exam/vo/{es,en}.mp3`
+ * (pausas >= 1 s = los <break> de docs/vo/). Ultimo valor: fin del video.
+ */
+export const VO_CUES_S: Record<"es" | "en", number[]> = {
+  es: [0, 11.9, 17.8, 29.5, 46.6, 54.5, 68.6, 81.9, 87.5, 103.3, 119.3, 134.2],
+  en: [0, 12.05, 18.5, 32.0, 47.0, 55.3, 70.1, 83.8, 89.7, 104.9, 118.65, 131.4],
+};
+
+export type SalesScene = { id: SceneId; from: number; duration: number };
+
+/** Escaleta en frames para un idioma. */
+export const salesSchedule = (lang: "es" | "en"): SalesScene[] => {
+  const cues = VO_CUES_S[lang].map((s) => Math.round(s * EXAM_FPS));
+  return SCENE_ORDER.map((id, i) => ({
+    id,
+    from: cues[i],
+    duration: cues[i + 1] - cues[i],
+  }));
+};
+
+export const salesFrames = (lang: "es" | "en") =>
+  Math.round(VO_CUES_S[lang][VO_CUES_S[lang].length - 1] * EXAM_FPS);

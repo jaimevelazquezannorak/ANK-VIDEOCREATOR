@@ -5,6 +5,7 @@ import {
   Sequence,
   staticFile,
   useCurrentFrame,
+  useVideoConfig,
 } from "remotion";
 import { type ExamLang } from "./copy";
 import { ExamIntro } from "./ExamIntro";
@@ -21,16 +22,23 @@ import {
   SceneAppPlate,
 } from "./scenes/SceneAppPlate";
 
-preloadAppPlates();
-import { pfu, SALES, SALES_FRAMES } from "./theme";
+import { pfu, salesSchedule, type SceneId } from "./theme";
 
-const BED_VOLUME = 0.18;
+preloadAppPlates();
+
+/**
+ * Mezcla. Medido sobre el render (RMS del 30 % mas alto, mono 16 kHz):
+ * voz ES -21,4 dBFS y EN -18,9 dBFS a ganancia 1; objetivo -17 dBFS con
+ * picos por debajo de -1 dBFS. La cama queda unos 18 dB por debajo de la voz.
+ */
+const BED_VOLUME = 0.08;
+const VO_GAIN: Record<ExamLang, number> = { es: 1.65, en: 1.25 };
 
 /** Solape del encadenado entre escenas. */
 const OVERLAP = 12;
 
 const renderScene = (
-  id: (typeof SALES)[number]["id"],
+  id: SceneId,
   lang: ExamLang,
   duration: number,
 ) => {
@@ -71,7 +79,8 @@ const renderScene = (
 /** Hilo azul de avance: el comercial ve cuanto queda sin salir del video. */
 const ProgressRail: React.FC = () => {
   const frame = useCurrentFrame();
-  const p = Math.min(frame / SALES_FRAMES, 1);
+  const { durationInFrames } = useVideoConfig();
+  const p = Math.min(frame / durationInFrames, 1);
 
   return (
     <AbsoluteFill style={{ justifyContent: "flex-end" }}>
@@ -89,10 +98,13 @@ const ProgressRail: React.FC = () => {
 };
 
 /**
- * Video de venta del Sistema de Examenes (90 s). Una escaleta, dos idiomas.
- * El montaje vive en `SALES` (src/exam/theme.ts) y el texto en `copy.ts`.
+ * Video de venta del Sistema de Examenes. Una escaleta por idioma, gobernada
+ * por la locucion (`VO_CUES_S` en src/exam/theme.ts); el texto en `copy.ts`.
  */
 export const ExamSalesVideo: React.FC<{ lang: ExamLang }> = ({ lang }) => {
+  const { durationInFrames } = useVideoConfig();
+  const scenes = salesSchedule(lang);
+
   return (
     <AbsoluteFill style={{ backgroundColor: pfu.paper }}>
       <Audio
@@ -100,13 +112,17 @@ export const ExamSalesVideo: React.FC<{ lang: ExamLang }> = ({ lang }) => {
         volume={(f) =>
           interpolate(
             f,
-            [0, 24, SALES_FRAMES - 48, SALES_FRAMES],
+            [0, 24, durationInFrames - 60, durationInFrames],
             [0, BED_VOLUME, BED_VOLUME, 0],
             { extrapolateLeft: "clamp", extrapolateRight: "clamp" },
           )
         }
       />
-      {SALES.map((s, i) => {
+      <Audio
+        src={staticFile(`exam/vo/${lang}.mp3`)}
+        volume={() => VO_GAIN[lang]}
+      />
+      {scenes.map((s, i) => {
         const from = i === 0 ? 0 : s.from - OVERLAP;
         const duration = s.from + s.duration - from;
         return (

@@ -2,7 +2,7 @@ import { Composition } from "remotion";
 import { z } from "zod";
 import { ExamIntro } from "./ExamIntro";
 import { ExamSalesVideo } from "./ExamSalesVideo";
-import { EXAM_FPS, INTRO_FRAMES, SALES_FRAMES } from "./theme";
+import { EXAM_FPS, INTRO_FRAMES, salesFrames } from "./theme";
 
 export const ExamIntroSchema = z.object({
   lang: z.enum(["es", "en"]),
@@ -14,7 +14,7 @@ export const ExamIntroCompositions = () => {
       <Composition
         id="ExamSalesES"
         component={ExamSalesVideo}
-        durationInFrames={SALES_FRAMES}
+        durationInFrames={salesFrames("es")}
         fps={EXAM_FPS}
         width={1920}
         height={1080}
@@ -24,7 +24,7 @@ export const ExamIntroCompositions = () => {
       <Composition
         id="ExamSalesEN"
         component={ExamSalesVideo}
-        durationInFrames={SALES_FRAMES}
+        durationInFrames={salesFrames("en")}
         fps={EXAM_FPS}
         width={1920}
         height={1080}

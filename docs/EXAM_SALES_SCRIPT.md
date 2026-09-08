@@ -6,29 +6,30 @@
 **Objetivo:** que un comercial pueda enseñar en 90 s cómo se vende y cómo funciona el lazo cerrado.
 **Formatos:** dos renders, `ExamSalesES` y `ExamSalesEN` (1920x1080, 30 fps, 2700 frames).
 **Estado:** montado y renderizado. Salidas en `out/exam_sales_es.mp4` y `out/exam_sales_en.mp4`.
-**Locución:** guiones ES/EN para ElevenLabs en `docs/vo/`, montaje en `docs/ELEVENLABS_VO.md`.
+**Locución:** grabada y montada (`public/exam/vo/{es,en}.mp3`). Guiones en `docs/vo/`, sincronía en `docs/ELEVENLABS_VO.md`.
 
 ---
 
-## Estructura (98,4 s · 2952 frames)
+## Estructura (gobernada por la locución)
 
-Una sola escaleta para los dos idiomas. Vive en `SALES` (`src/exam/theme.ts`);
-el texto en pantalla vive en `salesCopy` e `introCopy` (`src/exam/copy.ts`);
-la locución en `docs/vo/`.
+Una escaleta por idioma. El orden de escenas vive en `SCENE_ORDER` y los instantes de
+entrada en `VO_CUES_S` (`src/exam/theme.ts`); el texto en pantalla en `salesCopy` e
+`introCopy` (`src/exam/copy.ts`); la locución en `docs/vo/` y `public/exam/vo/`.
 
-| # | Frames | Tiempo | Escena | Qué se ve |
-|---|--------|--------|--------|-----------|
-| 1 | 0–252 | 0–8,4 s | `ExamIntro.tsx` | Portada: la hoja real entra en el escáner y sale corregida |
-| 2 | 252–372 | 8,4–12,4 s | `SceneAppPlate` dash | Captura real del cuadro de mando |
-| 3 | 372–672 | 12,4–22,4 s | `Scene02Problem.tsx` | OMR genérico contra Sistema de Exámenes PFU |
-| 4 | 672–1032 | 22,4–34,4 s | `Scene03Hardware.tsx` | **B-roll**: fi-7300NX, un botón, PaperStream Capture Pro |
-| 5 | 1032–1152 | 34,4–38,4 s | `SceneAppPlate` gen | Captura real del generador |
-| 6 | 1152–1572 | 38,4–52,4 s | `Scene04Design.tsx` | Formulario, especificación, hoja A4 y mapa de casillas |
-| 7 | 1572–1872 | 52,4–62,4 s | `Scene05Identity.tsx` | Lista de alumnos tachada y QR con ID aleatorio |
-| 8 | 1872–1992 | 62,4–66,4 s | `SceneAppPlate` alu | Captura real de alumnos |
-| 9 | 1992–2352 | 66,4–78,4 s | `Scene06PrintScan.tsx` | **B-roll**: alimentador, lote de 120, reimpresión |
-| 10 | 2352–2712 | 78,4–90,4 s | `Scene07Vision.tsx` | Seis pasos y medición de tinta con dos umbrales |
-| 11 | 2712–2952 | 90,4–98,4 s | `Scene08Closing.tsx` | Cuatro verbos, salidas y cierre |
+| # | Escena | ES empieza | EN empieza | Qué se ve |
+|---|--------|-----------|-----------|-----------|
+| 1 | `ExamIntro.tsx` | 0,0 s | 0,0 s | Portada: la hoja real entra en el escáner y sale corregida |
+| 2 | `SceneAppPlate` dash | 11,9 s | 12,05 s | Captura real del cuadro de mando |
+| 3 | `Scene02Problem.tsx` | 17,8 s | 18,5 s | OMR genérico contra Sistema de Exámenes PFU, fila a fila |
+| 4 | `Scene03Hardware.tsx` | 29,5 s | 32,0 s | **B-roll**: fi-7300NX, un botón, PaperStream Capture Pro |
+| 5 | `SceneAppPlate` gen | 46,6 s | 47,0 s | Captura real del generador |
+| 6 | `Scene04Design.tsx` | 54,5 s | 55,3 s | Formulario, especificación, hoja A4 y mapa de casillas |
+| 7 | `Scene05Identity.tsx` | 68,6 s | 70,1 s | Lista de alumnos tachada y QR con ID aleatorio |
+| 8 | `SceneAppPlate` alu | 81,9 s | 83,8 s | Captura real de alumnos |
+| 9 | `Scene06PrintScan.tsx` | 87,5 s | 89,7 s | **B-roll**: alimentador, lote de 120, reimpresión |
+| 10 | `Scene07Vision.tsx` | 103,3 s | 104,9 s | Seis pasos y medición de tinta con dos umbrales |
+| 11 | `Scene08Closing.tsx` | 119,3 s | 118,65 s | Cuatro verbos, salidas y cierre |
+| | Fin | 134,2 s | 131,4 s | |
 
 Las escenas encadenan con un solape de 12 frames (`OVERLAP` en
 `src/exam/ExamSalesVideo.tsx`). Un hilo azul de avance recorre el borde inferior.
