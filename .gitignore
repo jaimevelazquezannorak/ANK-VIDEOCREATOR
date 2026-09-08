@@ -5,3 +5,6 @@ dist
 
 # Ignore the output video from Git but not videos you import into src/.
 out
+
+# Capturas intermedias del B-roll de app (fuente: scripts/record-app-broll.mjs)
+public/exam/broll/raw

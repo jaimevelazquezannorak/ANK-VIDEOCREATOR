@@ -1,10 +1,16 @@
 import "./index.css";
-import { MyComposition } from "./Composition";
+import {
+  AnnorakCorporateComposition,
+  AnnorakCorporateFeedComposition,
+} from "./Composition";
+import { ExamIntroCompositions } from "./exam/ExamCompositions";
 
 export const RemotionRoot: React.FC = () => {
   return (
     <>
-      <MyComposition />
+      <ExamIntroCompositions />
+      <AnnorakCorporateComposition />
+      <AnnorakCorporateFeedComposition />
     </>
   );
 };

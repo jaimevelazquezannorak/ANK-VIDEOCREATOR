@@ -1,0 +1,24 @@
+<break time="0.6s" />
+Sistema de Exámenes PFU. Exámenes tipo test corregidos por el escáner fi Series, del diseño de la hoja a la nota. Sin adivinar una sola casilla.
+<break time="1.6s" />
+Todo se gestiona desde el navegador: exámenes, alumnos, evaluaciones y resultados.
+<break time="1.2s" />
+Un OMR genérico corrige hojas que no ha creado, y por eso tiene que adivinar dónde está cada casilla. Este sistema genera la hoja, y sabe exactamente qué está midiendo.
+<break time="1.2s" />
+El hardware ya está en el centro. Sobre el mismo escáner fi Series que ya vende PFU, el profesor pulsa un botón y PaperStream Capture Pro envía el lote a la aplicación. Sin ordenador en el aula.
+<break time="1.4s" />
+Primero, el diseño. El profesor rellena un formulario: preguntas, opciones, casillas de reserva y de anulación.
+<break time="1.0s" />
+El sistema genera el PDF listo para imprimir y, en el mismo acto, el mapa exacto de cada casilla. Lo que se imprime y lo que se corrige es la misma hoja: no puede desincronizarse.
+<break time="1.2s" />
+Segundo, el anonimato. La hoja solo lleva un código QR con un identificador aleatorio. El profesor corrige sin ver el nombre, y el sistema lo revela únicamente al cerrar las notas.
+<break time="1.2s" />
+Los alumnos se importan desde Excel, por grupos, o se dan de alta a mano.
+<break time="1.0s" />
+Tercero, imprimir y escanear. Un PDF por alumno, con su QR. Después del examen, el lote entero entra por el alimentador y cada hoja llega ya identificada. Una clase completa en una sola pasada.
+<break time="1.2s" />
+Cuarto, corregir. El sistema mide la tinta de cada casilla, no la adivina. Marcada, vacía o dudosa. Solo lo dudoso pasa a revisión humana. La misma hoja da siempre la misma nota.
+<break time="1.4s" />
+Genera. Imprime. Escanea. Corrige.
+<break time="0.6s" />
+Nota por alumno, copia certificada y envío por correo. Una solución completa sobre el escáner fi Series.

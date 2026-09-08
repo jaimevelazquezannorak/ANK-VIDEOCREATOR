@@ -1,25 +1,20 @@
-import { CalculateMetadataFunction, Composition } from "remotion";
+import { Composition } from "remotion";
+import { AnnorakCorporateVideo } from "./annorak/AnnorakCorporateVideo";
+import { TIMING } from "./annorak/theme";
 
-type Props = {};
-
-const calculateMetadata: CalculateMetadataFunction<Props> = () => {
-  return {};
+export const AnnorakCorporateComposition = () => {
+  return null;
 };
 
-export const MyComposition = () => {
+export const AnnorakCorporateFeedComposition = () => {
   return (
     <Composition
-      id="MyComp"
-      component={MyComponent}
-      durationInFrames={60}
-      fps={30}
-      width={1280}
-      height={720}
-      calculateMetadata={calculateMetadata}
+      id="AnnorakCorporateFeed"
+      component={AnnorakCorporateVideo}
+      durationInFrames={TIMING.totalFrames}
+      fps={TIMING.fps}
+      width={1080}
+      height={1350}
     />
   );
-};
-
-export const MyComponent: React.FC<Props> = () => {
-  return null;
 };

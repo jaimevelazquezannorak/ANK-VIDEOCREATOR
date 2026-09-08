@@ -1,0 +1,24 @@
+<break time="0.6s" />
+PFU Exam System. Multiple choice exams graded by the fi Series scanner, from sheet design to final grade. Without guessing a single box.
+<break time="1.6s" />
+Everything runs in the browser: exams, students, evaluations and results.
+<break time="1.2s" />
+Generic OMR grades sheets it never created, so it has to guess where every box is. This system generates the sheet, and knows exactly what it is measuring.
+<break time="1.2s" />
+The hardware is already on site. On the same fi Series scanner PFU already sells, the teacher presses one button and PaperStream Capture Pro sends the batch to the application. No computer in the classroom.
+<break time="1.4s" />
+First, design. The teacher fills in a form: questions, options, reserve and void boxes.
+<break time="1.0s" />
+The system generates the print-ready PDF and, in the same act, the exact map of every box. What is printed and what is graded is the same sheet: it cannot drift apart.
+<break time="1.2s" />
+Second, anonymity. The sheet only carries a QR code with a random identifier. The teacher grades without seeing a name, and the system reveals it only when grades are closed.
+<break time="1.2s" />
+Students are imported from Excel, by group, or added by hand.
+<break time="1.0s" />
+Third, print and scan. One PDF per student, with its own QR. After the exam, the whole batch goes through the feeder and every sheet arrives already identified. A full class in a single pass.
+<break time="1.2s" />
+Fourth, grading. The system measures the ink in every box. It does not guess. Marked, empty or doubtful. Only doubtful boxes go to human review. The same sheet always gets the same grade.
+<break time="1.4s" />
+Design. Print. Scan. Grade.
+<break time="0.6s" />
+A grade per student, a certified copy, and delivery by email. A complete solution on top of the fi Series scanner.
