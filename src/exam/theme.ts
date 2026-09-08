@@ -11,15 +11,7 @@ export const pfu = {
   g500: "#8A8A8A",
   g200: "#E6E6E6",
   g100: "#F1F1F1",
-  /**
-   * Fondo de pagina. Mas oscuro que el --g50 de la app (#F8F8F8) a proposito:
-   * en video una pantalla llena a luma 248 se percibe quemada y no deja
-   * separacion con las tarjetas blancas. Medido: baja los planos claros de
-   * ~244 a ~232 de luma sin perder contraste de texto.
-   */
-  paper: "#E4E9EF",
-  /** Fondo de los planos de interfaz, para que la captura no vaya a sangre. */
-  plateGround: "#10141A",
+  paper: "#F8F8F8",
   white: "#FFFFFF",
   canvas: "#2A2A2A",
   header: "#07090D",

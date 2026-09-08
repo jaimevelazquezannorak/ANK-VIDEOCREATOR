@@ -7,7 +7,7 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import { type ExamLang, introCopy } from "./copy";
+import { type ExamLang } from "./copy";
 import { ExamIntro } from "./ExamIntro";
 import { Scene02Problem } from "./scenes/Scene02Problem";
 import { Scene03Hardware } from "./scenes/Scene03Hardware";
@@ -38,6 +38,12 @@ const VO_GAIN: Record<ExamLang, number> = { es: 1.25, en: 1.65 };
 /** Solape del encadenado entre escenas. */
 const OVERLAP = 12;
 
+/**
+ * Atenuacion global del render. El diseno no cambia: es el mismo ajuste que
+ * bajar el brillo del monitor. 1 = tal cual sale del navegador.
+ */
+const RENDER_BRIGHTNESS = 0.9;
+
 const renderScene = (
   id: SceneId,
   lang: ExamLang,
@@ -48,11 +54,7 @@ const renderScene = (
       return <ExamIntro lang={lang} />;
     case "appDash":
       return (
-        <SceneAppPlate
-          {...APP_PLATES.dash}
-          duration={duration}
-          crumb={introCopy[lang].crumb}
-        />
+        <SceneAppPlate {...APP_PLATES.dash} duration={duration} />
       );
     case "problem":
       return <Scene02Problem lang={lang} />;
@@ -60,11 +62,7 @@ const renderScene = (
       return <Scene03Hardware lang={lang} duration={duration} />;
     case "appGen":
       return (
-        <SceneAppPlate
-          {...APP_PLATES.gen}
-          duration={duration}
-          crumb={introCopy[lang].crumb}
-        />
+        <SceneAppPlate {...APP_PLATES.gen} duration={duration} />
       );
     case "design":
       return <Scene04Design lang={lang} />;
@@ -72,11 +70,7 @@ const renderScene = (
       return <Scene05Identity lang={lang} />;
     case "appStudents":
       return (
-        <SceneAppPlate
-          {...APP_PLATES.alu}
-          duration={duration}
-          crumb={introCopy[lang].crumb}
-        />
+        <SceneAppPlate {...APP_PLATES.alu} duration={duration} />
       );
     case "printScan":
       return <Scene06PrintScan lang={lang} duration={duration} />;
@@ -119,7 +113,12 @@ export const ExamSalesVideo: React.FC<{ lang: ExamLang }> = ({ lang }) => {
   const scenes = salesSchedule(lang);
 
   return (
-    <AbsoluteFill style={{ backgroundColor: pfu.paper }}>
+    <AbsoluteFill
+      style={{
+        backgroundColor: pfu.paper,
+        filter: `brightness(${RENDER_BRIGHTNESS})`,
+      }}
+    >
       <Audio
         src={staticFile("exam/aylex-little-step.mp3")}
         volume={(f) =>

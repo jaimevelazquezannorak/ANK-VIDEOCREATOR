@@ -34,11 +34,11 @@ entrada en `VO_CUES_S` (`src/exam/theme.ts`); el texto en pantalla en `salesCopy
 Las escenas encadenan con un solape de 12 frames (`OVERLAP` en
 `src/exam/ExamSalesVideo.tsx`). Un hilo azul de avance recorre el borde inferior.
 
-**Regla de brillo (vídeo, no app):** el fondo de página es `#E4E9EF`, más oscuro que el
-`--g50: #F8F8F8` del design system. A pantalla completa, 248 de luma se percibe quemado y no
-deja separación con las tarjetas blancas. Las capturas de la app van enmarcadas sobre fondo
-oscuro, nunca a sangre: a sangre disparaban la luma a 248 con un 45 % de la pantalla en blanco
-casi puro. Medido sobre el render: planos claros a ~230, planos de app a ~191.
+**Brillo del render:** el diseño usa la paleta de la app tal cual (`#F8F8F8` de fondo).
+El MP4 sale atenuado con `RENDER_BRIGHTNESS = 0.9` en `src/exam/ExamSalesVideo.tsx`
+(un `filter: brightness()` sobre la raíz), que es el mismo efecto que bajar el brillo del
+monitor sin tocar ningún color ni composición. Subir o bajar ese número si el vídeo se
+va a proyectar en una pantalla muy distinta.
 
 **Regla de copia (comercial):** cada plano abre con el beneficio para el centro y cierra
 con una prueba técnica. Sin jerga en el titular; la jerga va en la locución o en los chips.
