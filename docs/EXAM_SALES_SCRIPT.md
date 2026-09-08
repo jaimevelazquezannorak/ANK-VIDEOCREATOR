@@ -19,20 +19,26 @@ entrada en `VO_CUES_S` (`src/exam/theme.ts`); el texto en pantalla en `salesCopy
 | # | Escena | ES empieza | EN empieza | Qué se ve |
 |---|--------|-----------|-----------|-----------|
 | 1 | `ExamIntro.tsx` | 0,0 s | 0,0 s | Portada: la hoja real entra en el escáner y sale corregida |
-| 2 | `SceneAppPlate` dash | 11,9 s | 12,05 s | Captura real del cuadro de mando |
-| 3 | `Scene02Problem.tsx` | 17,8 s | 18,5 s | OMR genérico contra Sistema de Exámenes PFU, fila a fila |
-| 4 | `Scene03Hardware.tsx` | 29,5 s | 32,0 s | **B-roll**: fi-7300NX, un botón, PaperStream Capture Pro |
-| 5 | `SceneAppPlate` gen | 46,6 s | 47,0 s | Captura real del generador |
-| 6 | `Scene04Design.tsx` | 54,5 s | 55,3 s | Formulario, especificación, hoja A4 y mapa de casillas |
-| 7 | `Scene05Identity.tsx` | 68,6 s | 70,1 s | Lista de alumnos tachada y QR con ID aleatorio |
-| 8 | `SceneAppPlate` alu | 81,9 s | 83,8 s | Captura real de alumnos |
-| 9 | `Scene06PrintScan.tsx` | 87,5 s | 89,7 s | **B-roll**: alimentador, lote de 120, reimpresión |
-| 10 | `Scene07Vision.tsx` | 103,3 s | 104,9 s | Seis pasos y medición de tinta con dos umbrales |
-| 11 | `Scene08Closing.tsx` | 119,3 s | 118,65 s | Cuatro verbos, salidas y cierre |
-| | Fin | 134,2 s | 131,4 s | |
+| 2 | `SceneAppPlate` dash | 12,05 s | 11,9 s | Captura real del cuadro de mando |
+| 3 | `Scene02Problem.tsx` | 18,5 s | 17,8 s | OMR genérico contra Sistema de Exámenes PFU, fila a fila |
+| 4 | `Scene03Hardware.tsx` | 32,0 s | 29,5 s | **B-roll**: fi-7300NX, un botón, PaperStream Capture Pro |
+| 5 | `SceneAppPlate` gen | 47,0 s | 46,6 s | Captura real del generador |
+| 6 | `Scene04Design.tsx` | 55,3 s | 54,5 s | Formulario, especificación, hoja A4 y mapa de casillas |
+| 7 | `Scene05Identity.tsx` | 70,1 s | 68,6 s | Lista de alumnos tachada y QR con ID aleatorio |
+| 8 | `SceneAppPlate` alu | 83,8 s | 81,9 s | Captura real de alumnos |
+| 9 | `Scene06PrintScan.tsx` | 89,7 s | 87,5 s | **B-roll**: alimentador, lote de 120, reimpresión |
+| 10 | `Scene07Vision.tsx` | 104,9 s | 103,3 s | Seis pasos y medición de tinta con dos umbrales |
+| 11 | `Scene08Closing.tsx` | 118,65 s | 119,3 s | Cuatro verbos, salidas y cierre |
+| | Fin | 131,4 s | 134,2 s | |
 
 Las escenas encadenan con un solape de 12 frames (`OVERLAP` en
 `src/exam/ExamSalesVideo.tsx`). Un hilo azul de avance recorre el borde inferior.
+
+**Regla de brillo (vídeo, no app):** el fondo de página es `#E4E9EF`, más oscuro que el
+`--g50: #F8F8F8` del design system. A pantalla completa, 248 de luma se percibe quemado y no
+deja separación con las tarjetas blancas. Las capturas de la app van enmarcadas sobre fondo
+oscuro, nunca a sangre: a sangre disparaban la luma a 248 con un 45 % de la pantalla en blanco
+casi puro. Medido sobre el render: planos claros a ~230, planos de app a ~191.
 
 **Regla de copia (comercial):** cada plano abre con el beneficio para el centro y cierra
 con una prueba técnica. Sin jerga en el titular; la jerga va en la locución o en los chips.

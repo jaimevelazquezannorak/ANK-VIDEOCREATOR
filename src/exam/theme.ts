@@ -11,7 +11,15 @@ export const pfu = {
   g500: "#8A8A8A",
   g200: "#E6E6E6",
   g100: "#F1F1F1",
-  paper: "#F8F8F8",
+  /**
+   * Fondo de pagina. Mas oscuro que el --g50 de la app (#F8F8F8) a proposito:
+   * en video una pantalla llena a luma 248 se percibe quemada y no deja
+   * separacion con las tarjetas blancas. Medido: baja los planos claros de
+   * ~244 a ~232 de luma sin perder contraste de texto.
+   */
+  paper: "#E4E9EF",
+  /** Fondo de los planos de interfaz, para que la captura no vaya a sangre. */
+  plateGround: "#10141A",
   white: "#FFFFFF",
   canvas: "#2A2A2A",
   header: "#07090D",
@@ -126,8 +134,10 @@ export const SCENE_ORDER: SceneId[] = [
  * (pausas >= 1 s = los <break> de docs/vo/). Ultimo valor: fin del video.
  */
 export const VO_CUES_S: Record<"es" | "en", number[]> = {
-  es: [0, 11.9, 17.8, 29.5, 46.6, 54.5, 68.6, 81.9, 87.5, 103.3, 119.3, 134.2],
-  en: [0, 12.05, 18.5, 32.0, 47.0, 55.3, 70.1, 83.8, 89.7, 104.9, 118.65, 131.4],
+  /** Voz Martin Osborne, 130,2 s. */
+  es: [0, 12.05, 18.5, 32.0, 47.0, 55.3, 70.1, 83.8, 89.7, 104.9, 118.65, 131.4],
+  /** Voz Adrian, 132,9 s. */
+  en: [0, 11.9, 17.8, 29.5, 46.6, 54.5, 68.6, 81.9, 87.5, 103.3, 119.3, 134.2],
 };
 
 export type SalesScene = { id: SceneId; from: number; duration: number };

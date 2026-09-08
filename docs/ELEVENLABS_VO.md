@@ -1,15 +1,19 @@
 # Locución ElevenLabs — Sistema de Exámenes PFU
 
-**Estado: locuciones montadas.** `public/exam/vo/es.mp3` (Adrian, 132,9 s) y
-`public/exam/vo/en.mp3` (Martin Osborne, 130,2 s). El montaje sigue a la voz:
-ES dura 134,2 s (4026 frames) y EN 131,4 s (3942 frames), 30 fps.
+**Estado: locuciones montadas.** `public/exam/vo/es.mp3` (voz Martin Osborne, 130,2 s) y
+`public/exam/vo/en.mp3` (voz Adrian, 132,9 s). El montaje sigue a la voz:
+ES dura 131,4 s (3942 frames) y EN 134,2 s (4026 frames), 30 fps.
+
+> Los nombres de voz de ElevenLabs no dicen el idioma: aquí la voz inglesa locuta el
+> castellano y viceversa. Al reemplazar un take, comprueba escuchando qué idioma es
+> antes de copiarlo a `es.mp3` o `en.mp3`.
 
 Los guiones que se grabaron están en `docs/vo/exam_sales_es.txt` y `docs/vo/exam_sales_en.txt`.
 Llevan pausas `<break time="…" />` en cada cambio de plano; el narrador las respetó, así que
 cada pausa larga (≥ 1 s) marca un corte de escena.
 
-**Mezcla** (`src/exam/ExamSalesVideo.tsx`): voz con ganancia por idioma (`VO_GAIN`: ES 1,65,
-EN 1,25, porque el take de Adrian salió 2,6 dB más bajo que el de Martin); cama musical a 0,08
+**Mezcla** (`src/exam/ExamSalesVideo.tsx`): voz con ganancia por idioma (`VO_GAIN`: ES 1,25,
+EN 1,65, porque el take de Adrian salió 2,6 dB más bajo que el de Martin); cama musical a 0,08
 con entrada de 0,8 s y salida de 2 s. Resultado medido en el render: voz a unos -17 dBFS RMS
 (30 % más alto), picos por debajo de -1 dBFS, música unos 18 dB por debajo de la voz.
 Remotion resta ~3 dB al mezclar dos pistas; la ganancia ya lo compensa.
@@ -30,39 +34,39 @@ Remotion resta ~3 dB al mezclar dos pistas; la ganancia ya lo compensa.
    una frase. `silence_end` de cada pausa larga, menos 0,3 s, es el `from` de la escena siguiente.
 3. El último valor de la tabla es el final del vídeo (fin de la voz + 1,2 s).
 
-## Reloj ES (Adrian)
+## Reloj ES (voz Martin Osborne)
 
 | Escena | Empieza | Bloque hablado |
 |---|---|---|
 | Portada | 0,0 s | «Sistema de Exámenes PFU…» |
-| App dashboard | 11,9 s | «Todo se gestiona desde el navegador…» |
-| Problema | 17,8 s | «Un OMR genérico corrige hojas…» |
-| Hardware | 29,5 s | «El hardware ya está en el centro…» |
-| App generador | 46,6 s | «Primero, el diseño…» |
-| Diseña | 54,5 s | «El sistema genera el PDF…» |
-| Anonimato | 68,6 s | «Segundo, el anonimato…» |
-| App alumnos | 81,9 s | «Los alumnos se importan desde Excel…» |
-| Imprime y escanea | 87,5 s | «Tercero, imprimir y escanear…» |
-| Corrige | 103,3 s | «Cuarto, corregir…» |
-| Cierre | 119,3 s | «Genera. Imprime. Escanea. Corrige…» |
-| Fin | 134,2 s | |
+| App dashboard | 12,05 s | «Todo se gestiona desde el navegador…» |
+| Problema | 18,5 s | «Un OMR genérico corrige hojas…» |
+| Hardware | 32,0 s | «El hardware ya está en el centro…» |
+| App generador | 47,0 s | «Primero, el diseño…» |
+| Diseña | 55,3 s | «El sistema genera el PDF…» |
+| Anonimato | 70,1 s | «Segundo, el anonimato…» |
+| App alumnos | 83,8 s | «Los alumnos se importan desde Excel…» |
+| Imprime y escanea | 89,7 s | «Tercero, imprimir y escanear…» |
+| Corrige | 104,9 s | «Cuarto, corregir…» |
+| Cierre | 118,65 s | «Genera. Imprime. Escanea. Corrige…» |
+| Fin | 131,4 s | |
 
-## Reloj EN (Martin Osborne)
+## Reloj EN (voz Adrian)
 
 | Escena | Empieza | Bloque hablado |
 |---|---|---|
 | Cover | 0,0 s | "PFU Exam System…" |
-| App dashboard | 12,05 s | "Everything runs in the browser…" |
-| Problem | 18,5 s | "Generic OMR grades sheets…" |
-| Hardware | 32,0 s | "The hardware is already on site…" |
-| App generator | 47,0 s | "First, design…" |
-| Design | 55,3 s | "The system generates the print-ready PDF…" |
-| Anonymity | 70,1 s | "Second, anonymity…" |
-| App students | 83,8 s | "Students are imported from Excel…" |
-| Print and scan | 89,7 s | "Third, print and scan…" |
-| Grade | 104,9 s | "Fourth, grading…" |
-| Close | 118,65 s | "Design. Print. Scan. Grade…" |
-| End | 131,4 s | |
+| App dashboard | 11,9 s | "Everything runs in the browser…" |
+| Problem | 17,8 s | "Generic OMR grades sheets…" |
+| Hardware | 29,5 s | "The hardware is already on site…" |
+| App generator | 46,6 s | "First, design…" |
+| Design | 54,5 s | "The system generates the print-ready PDF…" |
+| Anonymity | 68,6 s | "Second, anonymity…" |
+| App students | 81,9 s | "Students are imported from Excel…" |
+| Print and scan | 87,5 s | "Third, print and scan…" |
+| Grade | 103,3 s | "Fourth, grading…" |
+| Close | 119,3 s | "Design. Print. Scan. Grade…" |
+| End | 134,2 s | |
 
 ---
 

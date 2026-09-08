@@ -7,7 +7,7 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import { type ExamLang } from "./copy";
+import { type ExamLang, introCopy } from "./copy";
 import { ExamIntro } from "./ExamIntro";
 import { Scene02Problem } from "./scenes/Scene02Problem";
 import { Scene03Hardware } from "./scenes/Scene03Hardware";
@@ -28,11 +28,12 @@ preloadAppPlates();
 
 /**
  * Mezcla. Medido sobre el render (RMS del 30 % mas alto, mono 16 kHz):
- * voz ES -21,4 dBFS y EN -18,9 dBFS a ganancia 1; objetivo -17 dBFS con
- * picos por debajo de -1 dBFS. La cama queda unos 18 dB por debajo de la voz.
+ * la voz ES (Martin Osborne) llega 2,6 dB mas alta que la EN (Adrian), asi
+ * que cada idioma lleva su ganancia. Objetivo -17 dBFS con picos bajo -1 dBFS
+ * y la cama unos 18 dB por debajo de la voz.
  */
 const BED_VOLUME = 0.08;
-const VO_GAIN: Record<ExamLang, number> = { es: 1.65, en: 1.25 };
+const VO_GAIN: Record<ExamLang, number> = { es: 1.25, en: 1.65 };
 
 /** Solape del encadenado entre escenas. */
 const OVERLAP = 12;
@@ -47,7 +48,11 @@ const renderScene = (
       return <ExamIntro lang={lang} />;
     case "appDash":
       return (
-        <SceneAppPlate {...APP_PLATES.dash} duration={duration} />
+        <SceneAppPlate
+          {...APP_PLATES.dash}
+          duration={duration}
+          crumb={introCopy[lang].crumb}
+        />
       );
     case "problem":
       return <Scene02Problem lang={lang} />;
@@ -55,7 +60,11 @@ const renderScene = (
       return <Scene03Hardware lang={lang} duration={duration} />;
     case "appGen":
       return (
-        <SceneAppPlate {...APP_PLATES.gen} duration={duration} />
+        <SceneAppPlate
+          {...APP_PLATES.gen}
+          duration={duration}
+          crumb={introCopy[lang].crumb}
+        />
       );
     case "design":
       return <Scene04Design lang={lang} />;
@@ -63,7 +72,11 @@ const renderScene = (
       return <Scene05Identity lang={lang} />;
     case "appStudents":
       return (
-        <SceneAppPlate {...APP_PLATES.alu} duration={duration} />
+        <SceneAppPlate
+          {...APP_PLATES.alu}
+          duration={duration}
+          crumb={introCopy[lang].crumb}
+        />
       );
     case "printScan":
       return <Scene06PrintScan lang={lang} duration={duration} />;
