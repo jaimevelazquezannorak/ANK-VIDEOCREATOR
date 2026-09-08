@@ -50,7 +50,8 @@ export type SalesCopy = {
     beforeHead: string;
     afterHead: string;
     rows: Row[];
-    verdict: string;
+    /** Frase final: `mark` se subraya en azul al entrar. */
+    verdict: { pre: string; mark: string; post: string };
   };
   hardware: {
     eyebrow: string;
@@ -132,8 +133,11 @@ export const salesCopy: Record<ExamLang, SalesCopy> = {
           after: "Identidad por QR, sin transcribir nada",
         },
       ],
-      verdict:
-        "La diferencia es una: PFU genera la hoja, y por eso puede corregirla sin adivinar.",
+      verdict: {
+        pre: "La diferencia es una: ",
+        mark: "PFU genera la hoja",
+        post: ", y por eso puede corregirla sin adivinar.",
+      },
     },
     hardware: {
       eyebrow: "EL HARDWARE YA ESTÁ EN EL CENTRO",
@@ -248,8 +252,11 @@ export const salesCopy: Record<ExamLang, SalesCopy> = {
           after: "Identity by QR, nothing to transcribe",
         },
       ],
-      verdict:
-        "One difference: PFU generates the sheet, so it can grade it without guessing.",
+      verdict: {
+        pre: "One difference: ",
+        mark: "PFU generates the sheet",
+        post: ", so it can grade it without guessing.",
+      },
     },
     hardware: {
       eyebrow: "THE HARDWARE IS ALREADY ON SITE",
