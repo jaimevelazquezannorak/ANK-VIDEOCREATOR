@@ -1,54 +1,48 @@
-# Remotion video
+# ANK-VIDEOCREATOR
 
-<p align="center">
-  <a href="https://github.com/remotion-dev/logo">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://github.com/remotion-dev/logo/raw/main/animated-logo-banner-dark.apng">
-      <img alt="Animated Remotion Logo" src="https://github.com/remotion-dev/logo/raw/main/animated-logo-banner-light.gif">
-    </picture>
-  </a>
-</p>
+Proyecto [Remotion](https://www.remotion.dev) con los vídeos de Annorak Intelligence. El código de cada escena está en React: se puede abrir en Studio y ver cómo está hecha cada animación.
 
-Welcome to your Remotion project!
+## Vídeos
 
-## Commands
+| Composición | Qué es | Código |
+| --- | --- | --- |
+| `ExamSalesES` / `ExamSalesEN` | Vídeo comercial PFU · Sistema de Exámenes (1920×1080) | `src/exam/` |
+| `ExamIntroES` / `ExamIntroEN` | Intro aislada del comercial | `src/exam/ExamIntro.tsx` |
+| `AnnorakCorporateFeed` | Vídeo corporativo Annorak (1080×1350) | `src/annorak/` |
 
-**Install Dependencies**
+## Dónde están las animaciones
+
+**Comercial PFU**
+
+- Timeline y beats: `src/exam/theme.ts`
+- Orquestación: `src/exam/ExamSalesVideo.tsx`
+- Escenas: `src/exam/scenes/`
+- Motion compartido: `src/exam/motion.ts`, `src/exam/IntroMotion.tsx`
+- Copy ES/EN: `src/exam/copy.ts`
+
+**Corporativo Annorak**
+
+- Timeline: `src/annorak/theme.ts`, `src/annorak/motion.ts`
+- Orquestación: `src/annorak/AnnorakCorporateVideo.tsx`
+- Escenas: `src/annorak/scenes/`
+- Gráficos: `src/annorak/graphics/`
+
+## Cómo ejecutarlo
 
 ```console
 npm i
-```
-
-**Start Preview**
-
-```console
 npm run dev
 ```
 
-**Render video**
+Studio queda en [http://localhost:3000](http://localhost:3000). Elige una composición y recorre el timeline para ver cada interpolación.
+
+Render de un vídeo:
 
 ```console
-npx remotion render
+npx remotion render ExamSalesES
 ```
 
-**Upgrade Remotion**
+## Requisitos
 
-```console
-npx remotion upgrade
-```
-
-## Docs
-
-Get started with Remotion by reading the [fundamentals page](https://www.remotion.dev/docs/the-fundamentals).
-
-## Help
-
-We provide help on our [Discord server](https://discord.gg/6VzzNDwUwV).
-
-## Issues
-
-Found an issue with Remotion? [File an issue here](https://github.com/remotion-dev/remotion/issues/new).
-
-## License
-
-Note that for some entities a company license is needed. [Read the terms here](https://github.com/remotion-dev/remotion/blob/main/LICENSE.md).
+- Node.js 18+
+- Remotion 4 (ver `package.json`)
